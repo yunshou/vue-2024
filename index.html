@@ -8,13 +8,16 @@
 </head>
 <body>
     <div id="app">
-        <img v-bind:src="image.src" v-bind:alt="image.alt">
-       <hr>
-       <a v-bind:href="link" >go too google</a>
-        <hr>
-       <p v-text="text"></p>
-       <hr>
-       <p v-html="html"></p>
+       <p v-if=" user.age > user.allowedAge"> 
+        you are old enough
+       </p>
+       <p v-else-if="user.name === 'yunshou'">
+        welcome to home
+       </p>
+
+       <p v-else>
+        you are not olds
+       </p>
        
     </div>
     
@@ -23,19 +26,15 @@
     const { createApp,ref } = Vue;
     createApp({
         setup() {
-            let image = ref({
-                src : 'http://picsum.photos/200/300',
-                alt : 'An image'
-            });
-
-            const link = 'http://google.com';
-            const text = 'hellow guys!';
-            const html = '<b>hi~hi~  we are~</b>'
-            
+            const user = ref({
+                name : 'yunshou',
+                age : 15,
+                allowedAge : 18
+            })
            
-
             return {
-                image,link,text,html
+                user
+               
             }
           
             
