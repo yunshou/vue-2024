@@ -8,51 +8,38 @@
 </head>
 <body>
     <div id="app">
-        <p>{{ grettings }}</p>
-        <p>
-            is it true? : {{ isItTrue ? 'yes' : 'no' }}
-        </p>
-        <p>{{ array[0] }}</p>
-        <p>{{ obj.car }}</p>
-        <p>{{ message() }}</p>
-        <p>{{ welcome() }}</p>
+        <img v-bind:src="image.src" v-bind:alt="image.alt">
+       <hr>
+       <a v-bind:href="link" >go too google</a>
+        <hr>
+       <p v-text="text"></p>
+       <hr>
+       <p v-html="html"></p>
+       
     </div>
     
 </body>
 <script>
-    const { createApp } = Vue;
+    const { createApp,ref } = Vue;
     createApp({
         setup() {
-            const date = new Date().toLocaleDateString();
-            const grettings = 'HI~YunShou, today is ' + date;
-            const isItTrue = true;
-            const array = ['AAA','BBB'];
-            const obj = { car:'CAR'};
+            let image = ref({
+                src : 'http://picsum.photos/200/300',
+                alt : 'An image'
+            });
 
-            ///function
-            //const message = () => 'Message from function'
-            function message(){
-                const randName = array[Math.floor(Math.random()*array.length)];
-                if(isItTrue){
-                    return `${grettings}, my name is ${randName}`
-                }
-                return obj.car;
-            }
-
+            const link = 'http://google.com';
+            const text = 'hellow guys!';
+            const html = '<b>hi~hi~  we are~</b>'
+            
+           
 
             return {
-                grettings,
-                isItTrue,
-                array,
-                obj,
-                message
+                image,link,text,html
             }
-        },
-        methods: {
-            welcome(){
-                return 'Hello guys'
-            }
-        },
+          
+            
+        }
     }).mount('#app')
 </script>
 </html>
