@@ -8,17 +8,28 @@
 </head>
 <body>
     <div id="app">
-       <p v-if=" user.age > user.allowedAge"> 
-        you are old enough
-       </p>
-       <p v-else-if="user.name === 'yunshou'">
-        welcome to home
-       </p>
+       <ul>
+        
+        <li v-for="(name,index) in names">
+            {{ index }} : {{ name }} 
+          </li>
+       </ul>
 
-       <p v-else>
-        you are not olds
-       </p>
-       
+       <ul>
+        <li v-for="(car,index) in cars">
+            {{ car.brand }} + {{ car.color }} : {{ index }}
+        </li>
+       </ul>
+
+       <hr>
+
+       <ul>
+        <li v-for="(key,value,index) in user">
+            {{ index }} - {{ key }} - {{ value }}
+        </li>
+       </ul>
+     
+
     </div>
     
 </body>
@@ -26,14 +37,22 @@
     const { createApp,ref } = Vue;
     createApp({
         setup() {
-            const user = ref({
-                name : 'yunshou',
-                age : 15,
-                allowedAge : 18
-            })
+            const names = ref([
+                'abc','123','%%%'
+            ]);
+            const cars = ref([
+                {brand:'Ford',color:'red'},
+                {brand:'Chevy',color:'Blue'},
+                {brand:'Nissan',color:'Grey'}
+            ])
+            const user = {
+                name: 'yun',
+                lastname: 'shou',
+                age: 22
+            }
            
             return {
-                user
+                names,cars,user
                
             }
           
