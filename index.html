@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <title>Document</title>
+
+    <style>
+        .box{
+            width: 300px;
+            height: 300px;
+            background-color: aquamarine;
+
+        }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -14,8 +23,12 @@
      <h1>{{ name }}</h1>
 
 
-    {{ update() }}  
+     <div class="box" v-on:mousemove="getCoord"></div>
 
+     <p>X:{{ coord.x  }}    Y:{{ coord.y }}</p>
+
+
+    {{ update() }}  
 
 
     </div>
@@ -25,17 +38,22 @@
     const { createApp,ref } = Vue;
     createApp({
         setup() {
-            const name = ref('yunsohu');
+            const name = ref('yunsohu')
+            const coord = ref({x:0,y:0})
 
             function update(){
                 setTimeout(() => {
-                    name.value = 'Rainy'
+                    name.value = 'Rainy';
                 }, 2000);
+            };
+
+            function getCoord(event){
+                coord.value.x = event.clientX;
+                coord.value.y = event.clientY
             }
            
-           
             return {
-                name,update
+                name,update,coord,getCoord
                
             }
           
